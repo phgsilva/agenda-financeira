@@ -11,5 +11,7 @@ urlpatterns = [
 										'redirect_field_name': '/menu.html',
 										'authentication_form': LoginForm,}, 
 										name='login',),
-	url(r'^menu/$', views.menu, name='menu')
+	url(r'^menu/$', views.menu, name='menu'),
+	url(r'^consultaReceita/$', views.consultaReceita, name='consultaReceita'),
+	url(r'^consultaDespesa/$', views.consultaDespesa, name='consultaDespesa'),
 ]
