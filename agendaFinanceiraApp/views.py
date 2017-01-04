@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm
+from .models import Receita, Despesas
 
 # Create your views here.
 
@@ -33,7 +34,20 @@ def menu(request):
 		return render(request, 'agendaFinanceiraApp/menu.html', {})
 
 
+# Busca receitas
+@login_required
+def consultaReceita(request):
+	receitas = Receita.objects.order_by('data_entrada')
+	return render(request, 'agendaFinanceiraApp/consultarReceitas.html', {'receitas': receitas})
 
+# Busca despesas
+@login_required
+def consultaDespesas(request):
+	despesas = Despesas.objects.order_by('data_vencimento')
+	return render(request, 'agendaFinanceiraApp/ConsultarDespesas.html', {'despesas': despesas})
+
+
+# Criar as views de caadastro despesa e cadastro receita!!
 
 
 
