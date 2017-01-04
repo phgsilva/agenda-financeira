@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id="filtroReceita">
+		<form action="" method="GET">
+			
+		</form>
+	</div>
+	<div id="listaReceitas">
+		<table>
+  			<tr>
+    			<th>Pagador</th>
+    			<th>Valor</th>
+    			<th>Data Entrada</th>
+				<th>Forma de Recebimento</th>
+				<th>Situação</th>
+				<th>Observações</th>
+  			</tr>
+  			{% for receita in receitas %}
+			<tr>
+				<td>{{ receita.nome_pagador }}</td>
+    			<td>{{ receita.valor }}</td>
+    			<td>{{ receita.data_entrada }}</td>
+				<td>{{ receita.forma_recebimento }}</td>
+    			<td>{{ receita.situacao }}</td>
+    			<td>{{ receita.observacoes }}</td>
+  			</tr>
+			{% endfor %}  
+		</table>
+	</div>
+</body>
