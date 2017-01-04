@@ -42,7 +42,7 @@ def consultaReceita(request):
 
 # Busca despesas
 @login_required
-def consultaDespesas(request):
+def consultaDespesa(request):
 	despesas = Despesas.objects.order_by('data_vencimento')
 	return render(request, 'agendaFinanceiraApp/ConsultarDespesas.html', {'despesas': despesas})
 
