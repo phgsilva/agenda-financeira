@@ -15,5 +15,5 @@ urlpatterns = [
 	url(r'^consultar/receita/$', views.consultaReceita, name='consultaReceita'),
 	url(r'^consultar/despesa/$', views.consultaDespesa, name='consultaDespesa'),
 	url(r'^cadastrar/receita/$', views.casdatrarReceita, name='cadastrarReceita'),
-	url(r'^cadastrar/despesa/$', views.casdatrarDespesa, name='cadastrarDespesa'),
+	url(r'^cadastrar/despesa/$', views.casdatrarDespesas, name='cadastrarDespesa'),
 ]

@@ -59,28 +59,28 @@ def consultaDespesa(request):
 # Criar as views de caadastro despesa e cadastro receita!!
 @login_required
 def casdatrarReceita(request):
-    if request.method == "POST":
+	if request.method == "POST":
 		receitaForm = ReceitaForm(request.POST)
 		if receitaForm.is_valid():
-    		receita = receitaForm.save(commit=False)
+			receita = receitaForm.save(commit=False)
 			receita.usuario = request.user
 			receita.save()
 			return redirect('agendaFinanceiraApp.views.consultaReceita')
 	else:
-    	form = receitaForm()
+		form = receitaForm()
 		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': form})
 
 @login_required
 def casdatrarDespesas(request):
-    if request.method == "POST":
-    	despesaForm = ReceitaForm(request.POST)
+	if request.method == "POST":
+		despesaForm = ReceitaForm(request.POST)
 		if despesaForm.is_valid():
-    		despesa = receitaForm.save(commit=False)
+			despesa = receitaForm.save(commit=False)
 			despesa.usuario = request.user
 			despesa.save()
 			return redirect('agendaFinanceiraApp.views.consultaDespesa')
 	else:
-    	form = receitaForm()
+		form = receitaForm()
 		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': form})
 
 
