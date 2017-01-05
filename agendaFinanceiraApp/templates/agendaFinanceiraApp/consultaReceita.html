@@ -5,8 +5,14 @@
 </head>
 <body>
 	<div id="filtroReceita">
-		<form action="" method="GET">
-			
+		<form method="get" action="{% url 'consultaReceita' %}">
+			Data Inicial:
+            <input type="text" name="data_inicio">
+            
+            Data Final:
+            <input type="text" name="data_inicio">
+            
+            <input type="submit" value="pesquisar">	
 		</form>
 	</div>
 	<div id="listaReceitas">
