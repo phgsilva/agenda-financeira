@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm
+from .forms import UserForm, ReceitaForm, DespesaForm
 from .models import Receita, Despesas
 
 # Create your views here.
@@ -59,11 +59,29 @@ def consultaDespesa(request):
 # Criar as views de caadastro despesa e cadastro receita!!
 @login_required
 def casdatrarReceita(request):
-    pass
+    if request.method == "POST":
+		receitaForm = ReceitaForm(request.POST)
+		if receitaForm.is_valid():
+    		receita = receitaForm.save(commit=False)
+			receita.usuario = request.user
+			receita.save()
+			return redirect('agendaFinanceiraApp.views.consultaReceita')
+	else:
+    	form = receitaForm()
+		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': form})
 
 @login_required
 def casdatrarDespesas(request):
-    pass
+    if request.method == "POST":
+    	despesaForm = ReceitaForm(request.POST)
+		if despesaForm.is_valid():
+    		despesa = receitaForm.save(commit=False)
+			despesa.usuario = request.user
+			despesa.save()
+			return redirect('agendaFinanceiraApp.views.consultaDespesa')
+	else:
+    	form = receitaForm()
+		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': form})
 
 
 # Reaiza login de usuario *utilizando agora o do Django
