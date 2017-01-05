@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id="filtroReceita">
+		<form method="get" action="{% url 'consultaDespesa' %}">
+			Data Inicial:
+            <input type="text" name="data_inicio">
+            
+            Data Final:
+            <input type="text" name="data_inicio">
+            
+            <input type="submit" value="pesquisar">
+		</form>
+	</div>
+	<div id="listaReceitas">
+		<table>
+  			<tr>
+    			<th>Credor</th>
+    			<th>Valor</th>
+    			<th>Data de Vencimento</th>
+				<th>Forma de Pagamento</th>
+				<th>Situação</th>
+				<th>Observações</th>
+  			</tr>
+  			{% for receita in receitas %}
+			<tr>
+				<td>{{ receita.nome_credor }}</td>
+    			<td>{{ receita.valor }}</td>
+    			<td>{{ receita.data_vencimento }}</td>
+				<td>{{ receita.forma_recebimento }}</td>
+    			<td>{{ receita.situacao }}</td>
+    			<td>{{ receita.observacoes }}</td>
+  			</tr>
+			{% endfor %}  
+		</table>
+	</div>
+</body>
