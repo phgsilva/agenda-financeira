@@ -6,6 +6,8 @@
 <body>
 	<div id="filtroReceita">
 		<form method="get" action="{% url 'consultaReceita' %}">
+			{% csrf_token %}
+
 			Data Inicial:
             <input type="text" name="data_inicio">
             
