@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Receita, Despesas
-
+from django.utils.translation import ugettext_lazy as _
 
 class UserForm(forms.ModelForm):
 	class Meta:
