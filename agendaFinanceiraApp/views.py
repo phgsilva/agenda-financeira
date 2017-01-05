@@ -28,10 +28,7 @@ def cadastrar(request):
 # Menu inical apos login
 @login_required
 def menu(request):
-	#if not request.user.is_authenticated():
-	#	return redirect('login.html')
-	#else:
-		return render(request, 'agendaFinanceiraApp/menu.html', {})
+    return render(request, 'agendaFinanceiraApp/menu.html', {})
 
 
 # Busca receitas
@@ -42,7 +39,7 @@ def consultaReceita(request):
 	receitas = []
 	
 	if (data_inicio is not None) and (data_fim is not None):
-		receitas = Receita.objects.filter(data_entrada__range=(data_inicio, data_fim)).order_by('data_entrada')
+		receitas = Receita.objects.filter(user=request.user, data_entrada__range=(data_inicio, data_fim)).order_by('data_entrada')
 	
 	return render(request, 'agendaFinanceiraApp/consultarReceitas.html', {'receitas': receitas})
 
@@ -54,13 +51,19 @@ def consultaDespesa(request):
 	despesas = []
 
 	if (data_inicio is not None) and (data_fim is not None):
-		despesas = Despesas.objects.filter(data_vencimento__range=(data_inicio, data_fim)).order_by('data_vencimento')
+		despesas = Despesas.objects.filter(user=request.user, data_vencimento__range=(data_inicio, data_fim)).order_by('data_vencimento')
 	
 	return render(request, 'agendaFinanceiraApp/ConsultarDespesas.html', {'despesas': despesas})
 
 
 # Criar as views de caadastro despesa e cadastro receita!!
+@login_required
+def casdatrarReceita(request):
+    pass
 
+@login_required
+def casdatrarDespesas(request):
+    pass
 
 
 # Reaiza login de usuario *utilizando agora o do Django
@@ -76,8 +79,3 @@ def consultaDespesa(request):
 			return render('/erro')
 	else:
 		return render(request, 'agendaFinanceiraApp/login.html') '''
-
-
-
-
-
