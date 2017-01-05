@@ -37,13 +37,25 @@ def menu(request):
 # Busca receitas
 @login_required
 def consultaReceita(request):
-	receitas = Receita.objects.order_by('data_entrada')
+	data_inicio = request.GET.get('data_inicio')
+	data_fim = request.GET.get('data_fim')
+	receitas = []
+	
+	if (data_inicio is not None) and (data_fim is not None):
+		receitas = Receita.objects.filter(data_entrada__range=(data_inicio, data_fim)).order_by('data_entrada')
+	
 	return render(request, 'agendaFinanceiraApp/consultarReceitas.html', {'receitas': receitas})
 
 # Busca despesas
 @login_required
 def consultaDespesa(request):
-	despesas = Despesas.objects.order_by('data_vencimento')
+	data_inicio = request.GET.get('data_inicio')
+	data_fim = request.GET.get('data_fim')
+	despesas = []
+
+	if (data_inicio is not None) and (data_fim is not None):
+		despesas = Despesas.objects.filter(data_vencimento__range=(data_inicio, data_fim)).order_by('data_vencimento')
+	
 	return render(request, 'agendaFinanceiraApp/ConsultarDespesas.html', {'despesas': despesas})
 
 
