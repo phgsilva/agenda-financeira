@@ -12,6 +12,8 @@ urlpatterns = [
 										'authentication_form': LoginForm,}, 
 										name='login',),
 	url(r'^menu/$', views.menu, name='menu'),
-	url(r'^consultaReceita/$', views.consultaReceita, name='consultaReceita'),
-	url(r'^consultaDespesa/$', views.consultaDespesa, name='consultaDespesa'),
+	url(r'^consultar/receita/$', views.consultaReceita, name='consultaReceita'),
+	url(r'^consultar/despesa/$', views.consultaDespesa, name='consultaDespesa'),
+	url(r'^cadastrar/receita/$', views.casdatrarReceita, name='cadastrarReceita'),
+	url(r'^cadastrar/despesa/$', views.casdatrarDespesa, name='cadastrarDespesa'),
 ]
