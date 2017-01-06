@@ -41,7 +41,7 @@ def consultaReceita(request):
 	if (data_inicio is not None) and (data_fim is not None):
 		receitas = Receita.objects.filter(user=request.user, data_entrada__range=(data_inicio, data_fim)).order_by('data_entrada')
 	
-	return render(request, 'agendaFinanceiraApp/consultarReceitas.html', {'receitas': receitas})
+	return render(request, 'agendaFinanceiraApp/consultaReceita.html', {'receitas': receitas})
 
 # Busca despesas
 @login_required
@@ -53,10 +53,9 @@ def consultaDespesa(request):
 	if (data_inicio is not None) and (data_fim is not None):
 		despesas = Despesas.objects.filter(user=request.user, data_vencimento__range=(data_inicio, data_fim)).order_by('data_vencimento')
 	
-	return render(request, 'agendaFinanceiraApp/ConsultarDespesas.html', {'despesas': despesas})
+	return render(request, 'agendaFinanceiraApp/ConsultaDespesa.html', {'despesas': despesas})
 
-
-# Criar as views de caadastro despesa e cadastro receita!!
+# Cadastro de receita
 @login_required
 def casdatrarReceita(request):
 	if request.method == "POST":
@@ -67,21 +66,22 @@ def casdatrarReceita(request):
 			receita.save()
 			return redirect('agendaFinanceiraApp.views.consultaReceita')
 	else:
-		form = receitaForm()
-		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': form})
+		receitaForm = ReceitaForm()
+		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': receitaForm})
 
+# Cadastro de despesas
 @login_required
 def casdatrarDespesas(request):
 	if request.method == "POST":
-		despesaForm = ReceitaForm(request.POST)
+		despesaForm = DespesaForm(request.POST)
 		if despesaForm.is_valid():
-			despesa = receitaForm.save(commit=False)
+			despesa = despesaForm.save(commit=False)
 			despesa.usuario = request.user
 			despesa.save()
 			return redirect('agendaFinanceiraApp.views.consultaDespesa')
 	else:
-		form = receitaForm()
-		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': form})
+		despesaForm = DespesaForm()
+		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': despesaForm})
 
 
 # Reaiza login de usuario *utilizando agora o do Django

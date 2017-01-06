@@ -9,23 +9,23 @@
 	<table> 
 		<td>
 			<tr>
-				<a href="">Cadastrar Receita</a>
+				<a href="{% url 'cadastrarReceita' %}">Cadastrar Receita</a>
 			</tr>
 			<tr>
-				<a href="">Consultar Receita</a>
-			</tr>
-		</td>
-		<td>
-			<tr>
-				<a href="">Cadastro Despesas</a>
-			</tr>
-			<tr>
-				<a href="">Consultar Despesas</a>
+				<a href="{% url 'consultaReceita' %}">Consultar Receita</a>
 			</tr>
 		</td>
 		<td>
 			<tr>
-				<a href="">Consultar Todos Lançamentos</a>
+				<a href="{% url 'cadastrarDespesa' %}">Cadastro Despesas</a>
+			</tr>
+			<tr>
+				<a href="{% url 'cadastrarReceita' %}">Consultar Despesas</a>
+			</tr>
+		</td>
+		<td>
+			<tr>
+				<a href="#">Consultar Todos Lançamentos</a>
 			</tr>
 		</td>
 	</table>
