@@ -82,18 +82,3 @@ def casdatrarDespesas(request):
 	else:
 		despesaForm = DespesaForm()
 		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': despesaForm})
-
-
-# Reaiza login de usuario *utilizando agora o do Django
-'''def login(request):
-	if(request.method == "POST"):
-		usuario = request.POST['nome_usuario']
-		senha = request.POST['senha']
-		usuario = authenticate(username = username, password = password)
-		if user is not None:
-			login(request, usuario)
-			return redirect('agendaFinanceiraApp.views.menu_inicial')
-		else:
-			return render('/erro')
-	else:
-		return render(request, 'agendaFinanceiraApp/login.html') '''
