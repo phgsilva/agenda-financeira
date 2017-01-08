@@ -81,4 +81,4 @@ def casdatrarDespesas(request):
 			return redirect('agendaFinanceiraApp.views.consultaDespesa')
 	else:
 		despesaForm = DespesaForm()
-		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': despesaForm})
+		return render(request, 'agendaFinanceiraApp/CadastroDespesa.html', {'form': despesaForm})

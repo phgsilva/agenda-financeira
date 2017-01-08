@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Agenda Financeira</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 </head>
 <body>
 	<h1>Bem vindo {{ request.user.username }}</h1>
@@ -20,7 +22,7 @@
 				<a href="{% url 'cadastrarDespesa' %}">Cadastro Despesas</a>
 			</tr>
 			<tr>
-				<a href="{% url 'cadastrarReceita' %}">Consultar Despesas</a>
+				<a href="{% url 'consultaDespesa' %}">Consultar Despesas</a>
 			</tr>
 		</td>
 		<td>
