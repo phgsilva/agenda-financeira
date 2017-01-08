@@ -1,42 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-</head>
-<body>
-	<div id="filtroReceita">
+{% extends 'agendaFinanceiraApp/base.html' %} {% block content %}
+
+<div class="panel panel-default">
+	<div id="filtroReceita" class="panel-body">
 		<form method="get" action="{% url 'consultaDespesa' %}">
 			{% csrf_token %}
-            
-            Data Inicial:
-            <input type="text" name="data_inicio" required> *
-            
-            Data Final:
-            <input type="text" name="data_inicio" required> *
-            
-            <input type="submit" value="pesquisar">
+			<label for="txbDataInicio"> Data Inicial: </label>
+			<input type="text" id="txbDataInicio" name="data_inicio" required> *
+
+			<label for="txbDataFim">Data Final:</label>
+			<input type="text" id="txbDataFim" name="data_inicio" required> *
+
+			<input type="submit" value="pesquisar" class="btn btn-default">
 		</form>
 	</div>
-	<div id="listaReceitas">
-		<table>
-  			<tr>
-    			<th>Credor</th>
-    			<th>Valor</th>
-    			<th>Data de Vencimento</th>
-				<th>Forma de Pagamento</th>
-				<th>Situação</th>
-				<th>Observações</th>
-  			</tr>
-  			{% for receita in receitas %}
-			<tr>
-				<td>{{ receita.nome_credor }}</td>
-    			<td>{{ receita.valor }}</td>
-    			<td>{{ receita.data_vencimento }}</td>
-				<td>{{ receita.forma_recebimento }}</td>
-    			<td>{{ receita.situacao }}</td>
-    			<td>{{ receita.observacoes }}</td>
-  			</tr>
-			{% endfor %}  
+
+	<div id="listaReceitas" class="table-responsive">
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Credor</th>
+					<th>Valor</th>
+					<th>Vencimento</th>
+					<th>Forma de Pagamento</th>
+					<th>Situação</th>
+					<th>Observações</th>
+					<th><span class="glyphicon glyphicon-pencil" aria-hidden="true"></th>
+				</tr>
+			</thead>
+			{% for receita in receitas %}
+			<tbody>
+				<tr>
+					<td>{{ receita.nome_credor }}</td>
+					<td>{{ receita.valor }}</td>
+					<td>{{ receita.data_vencimento }}</td>
+					<td>{{ receita.forma_recebimento }}</td>
+					<td>{{ receita.situacao }}</td>
+					<td>{{ receita.observacoes }}</td>
+					<td><a href="{% url '' %}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				</tr>
+			</tbody>
+			{% endfor %}
 		</table>
 	</div>
-</body>
+</div>
+{% endblock content %}

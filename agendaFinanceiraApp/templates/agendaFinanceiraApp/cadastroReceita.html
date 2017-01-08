@@ -5,10 +5,10 @@
 
 <h1>Cadastro de Receita</h1>
 <div>
-	<form method="post" class="post-form">{% csrf_token %}
-			
-		{{ form.as_p }}
-			
+	<form method="post" class="cadastro-form">{% csrf_token %}
+		<div class="form-group">	
+			{{ form.as_p }}
+		</div>
 		<button type="submit" class="save btn btn-default">Cadastrar</button>
 	</form>
 </div>

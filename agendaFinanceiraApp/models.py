@@ -6,7 +6,7 @@ from django.db import models
 # Create your models here.
 class Receita(models.Model):
 	SITUACOES = (('AB', 'Aberto'),
-				('PG', 'Pagamento'))
+				('PG', 'Pago'))
 
 	usuario = models.ForeignKey('auth.User')
 	valor = models.FloatField()
@@ -21,7 +21,7 @@ class Receita(models.Model):
 
 class Despesas(models.Model):
 	SITUACOES = (('AB', 'Aberto'),
-				('PG', 'Pagamento'))		
+				('PG', 'Pago'))		
 
 	usuario = models.ForeignKey('auth.User')
 	valor = models.FloatField()

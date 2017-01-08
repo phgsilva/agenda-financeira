@@ -10,7 +10,7 @@ class UserForm(forms.ModelForm):
 		fields = ('username', 'password', 'email',)
 		labels = {'username': _('Usuario'), 
 					'password': _('Senha'),}
-		widget = { 'password': forms.PasswordInput(), }
+		widget = { 'password': forms.PasswordInput(), } # NAO ESTA DANDO CERTO!!! 
 
 class LoginForm(AuthenticationForm):
 	username = forms.CharField(label="Nome Usuario", max_length=245)                               
