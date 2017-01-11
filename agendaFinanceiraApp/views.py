@@ -1,6 +1,6 @@
 import datetime 
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ReceitaForm, DespesaForm
@@ -23,6 +23,10 @@ def cadastrar(request):
 	else:
 		form = UserForm()
 	return render(request, 'agendaFinanceiraApp/cadastro.html', {'form': form})
+
+def sair(request):
+	logout(request)
+	return redirect('/')
 
 # -----views com obrigatoriedade de login-----
 	

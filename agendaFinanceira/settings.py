@@ -122,6 +122,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = '/menu/' 
 LOGIN_URL = '/login/'
+LOGOUT_REDIRECT_URL =  '/index/'
 
 DATE_INPUT_FORMATS = [
                         "%d/%m/%Y",
