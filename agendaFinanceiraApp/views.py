@@ -40,7 +40,8 @@ def consultaReceita(request):
 	if (request.GET.get('data_inicio') is not None) & (request.GET.get('data_fim') is not None):
 		data_inicio = request.GET.get('data_inicio')
 		data_fim = request.GET.get('data_fim')
-
+		
+		# conversao e formatacao da data 
 		data_inicio = datetime.datetime.strptime(data_inicio, "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")
 		data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")	
 		receitas = Receita.objects.filter(usuario=request.user, data_entrada__range=(data_inicio, data_fim)).order_by('data_entrada')
@@ -56,6 +57,7 @@ def consultaDespesa(request):
 		data_inicio = request.GET.get('data_inicio')
 		data_fim = request.GET.get('data_fim')
 		
+		# conversao e formatacao da data 
 		data_inicio = datetime.datetime.strptime(data_inicio, "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")
 		data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")	
 		despesas = Despesas.objects.filter(usuario=request.user, data_vencimento__range=(data_inicio, data_fim)).order_by('data_vencimento')
