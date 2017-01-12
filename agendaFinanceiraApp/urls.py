@@ -17,4 +17,6 @@ urlpatterns = [
 	url(r'^consultar/despesa/$', views.consultaDespesa, name='consultaDespesa'),
 	url(r'^cadastrar/receita/$', views.casdatrarReceita, name='cadastrarReceita'),
 	url(r'^cadastrar/despesa/$', views.casdatrarDespesas, name='cadastrarDespesa'),
+	url(r'^editar/receita/(?P<id>[0-9]+)/$', views.editarReceita, name='editarReceita'),
+	url(r'^editar/despesa/(?P<id>[0-9]+)/$', views.editarDespesa, name='editarDespesa'),
 ]

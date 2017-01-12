@@ -24,6 +24,7 @@ def cadastrar(request):
 		form = UserForm()
 	return render(request, 'agendaFinanceiraApp/cadastro.html', {'form': form})
 
+# Logout
 def sair(request):
 	logout(request)
 	return redirect('/')
@@ -66,7 +67,7 @@ def consultaDespesa(request):
 		data_fim = datetime.datetime.strptime(data_fim, "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")	
 		despesas = Despesas.objects.filter(usuario=request.user, data_vencimento__range=(data_inicio, data_fim)).order_by('data_vencimento')
 	
-	return render(request, 'agendaFinanceiraApp/ConsultaDespesa.html', {'despesas': despesas})
+	return render(request, 'agendaFinanceiraApp/consultaDespesa.html', {'despesas': despesas})
 
 # Cadastro de receita
 @login_required
@@ -80,7 +81,7 @@ def casdatrarReceita(request):
 			return redirect('/consultar/receita/')
 	else:
 		receitaForm = ReceitaForm()
-		return render(request, 'agendaFinanceiraApp/CadastroReceita.html', {'form': receitaForm})
+		return render(request, 'agendaFinanceiraApp/cadastroReceita.html', {'form': receitaForm})
 
 # Cadastro de despesas
 @login_required
@@ -94,4 +95,32 @@ def casdatrarDespesas(request):
 			return redirect('/consultar/despesa/')
 	else:
 		despesaForm = DespesaForm()
-		return render(request, 'agendaFinanceiraApp/CadastroDespesa.html', {'form': despesaForm})
+		return render(request, 'agendaFinanceiraApp/cadastroDespesa.html', {'form': despesaForm})
+
+# Editar Receita
+@login_required
+def editarReceita(request, id):
+	receita = Receita.objects.get(pk=id)
+	if request.method == "POST":
+		receitaEditForm = ReceitaForm(request.POST, instance=receita)
+		if receitaEditForm.is_valid():
+			receita = receitaEditForm.save(commit=False)
+			receita.save()
+			return redirect('/consultar/receita/')
+	else:
+		receitaEditForm = ReceitaForm(instance=receita)
+		return render(request, 'agendaFinanceiraApp/cadastroReceita.html', {'form': receitaEditForm})
+
+
+@login_required
+def editarDespesa(request, id):
+	despesa = Despesas.objects.get(pk=id)
+	if request.method == "POST":
+		despesaEditForm = DespesaForm(request.POST, instance=despesa)
+		if despesaEditForm.is_valid():
+			despesa = despesaEditForm.save(commit=False)
+			despesa.save()
+			return redirect('/consultar/despesa/')
+	else:
+		despesaEditForm = DespesaForm(instance=despesa)
+		return render(request, 'agendaFinanceiraApp/cadastroDespesa.html', {'form': despesaEditForm})
