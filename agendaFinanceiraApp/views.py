@@ -111,7 +111,7 @@ def editarReceita(request, id):
 		receitaEditForm = ReceitaForm(instance=receita)
 		return render(request, 'agendaFinanceiraApp/cadastroReceita.html', {'form': receitaEditForm})
 
-
+# Editar Despesa
 @login_required
 def editarDespesa(request, id):
 	despesa = Despesas.objects.get(pk=id)
@@ -124,3 +124,12 @@ def editarDespesa(request, id):
 	else:
 		despesaEditForm = DespesaForm(instance=despesa)
 		return render(request, 'agendaFinanceiraApp/cadastroDespesa.html', {'form': despesaEditForm})
+
+@login_required # TERMINAR IMPLEMENTAÇÂO !!!
+def saldo(request):
+    saldo = {}
+
+	if (request.GET.get('data_inicio') is not None) & (request.GET.get('data_fim')):
+    	pass
+	
+	return redirect('/menu/')
