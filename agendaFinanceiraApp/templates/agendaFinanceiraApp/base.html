@@ -28,7 +28,7 @@
                                 <li><a href="{% url 'cadastrarDespesa' %}">Cadastrar Despesas</a></li>
                                 <li><a href="{% url 'consultaDespesa' %}">Consultar Despesas</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href=""> Saldo </a></li>
+                                <li><a href="{% url 'saldo' %}"> Saldo </a></li>
                             </ul>
                         </li>
                         <li><p class="navbar-text navbar-left">Conectado como  {{ request.user.username }}</p></li>

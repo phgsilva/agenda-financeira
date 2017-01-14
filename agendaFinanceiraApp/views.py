@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ReceitaForm, DespesaForm
 from .models import Receita, Despesas
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -125,11 +126,22 @@ def editarDespesa(request, id):
 		despesaEditForm = DespesaForm(instance=despesa)
 		return render(request, 'agendaFinanceiraApp/cadastroDespesa.html', {'form': despesaEditForm})
 
-@login_required # TERMINAR IMPLEMENTAÇÂO !!!
+@login_required 
 def saldo(request):
-    saldo = {}
-
-	if (request.GET.get('data_inicio') is not None) & (request.GET.get('data_fim')):
-    	pass
-	
-	return redirect('/menu/')
+	if (request.GET.get('data_inicio') is not None) & (request.GET.get('data_fim') is not None):
+		data_inicio = datetime.datetime.strptime(request.GET.get('data_inicio'), "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")
+		data_fim = datetime.datetime.strptime(request.GET.get('data_fim'), "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")
+		
+		total_receitas = Receita.objects.filter(usuario=request.user, data_entrada__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
+		total_despesas = Despesas.objects.filter(usuario=request.user, data_vencimento__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
+		saldo = total_receitas['total'] - total_despesas['total']
+		saldo_periodo = {
+			'receitas': total_receitas['total'],
+			'despesas': total_despesas['total'],
+			'saldo': saldo
+		}
+		
+		return render(request, 'agendaFinanceiraApp/saldo.html', {'saldo_periodo': saldo_periodo})
+	else:
+		saldo_periodo = {}
+		return render(request, 'agendaFinanceiraApp/saldo.html', {'saldo_periodo': saldo_periodo})
