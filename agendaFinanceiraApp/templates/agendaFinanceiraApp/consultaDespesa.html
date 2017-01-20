@@ -1,19 +1,30 @@
-{% extends 'agendaFinanceiraApp/base.html' %} {% block content %}
-<h1 class="text-center">Consultar Despesas</h1>
-<div class="panel panel-default">
-	<div id="filtroReceita" class="panel-body">
-		<form method="get" action="{% url 'consultaDespesa' %}">
-			{% csrf_token %}
-			<label for="txbDataInicio"> Data Inicial: </label>
-			<input type="text" id="txbDataInicio" name="data_inicio" required> *
+{% extends 'agendaFinanceiraApp/base.html' %} 
+{% block content %}
 
-			<label for="txbDataFim">Data Final:</label>
-			<input type="text" id="txbDataFim" name="data_fim" required> *
-
-			<input type="submit" value="pesquisar" class="btn btn-default">
-		</form>
+<div class="row">
+	<div class="col-md-12">
+		<h1 class="text-center">Consultar Despesas</h1>
 	</div>
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div id="filtroReceita" class="panel-body">
+				<form method="get" action="{% url 'consultaDespesa' %}">
+					{% csrf_token %}
+					<label for="txbDataInicio"> Data Inicial: </label>
+					<input type="text" id="txbDataInicio" name="data_inicio" required> <span>*</span>
 
+					<label for="txbDataFim">Data Final:</label>
+					<input type="text" id="txbDataFim" name="data_fim" required> <span>*</span>
+
+					<input type="submit" value="pesquisar" class="btn btn-default">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
 	<div id="listaDespesa" class="table-responsive">
 		<table class="table table-hover table-condensed">
 			<thead>
@@ -41,6 +52,7 @@
 			</tbody>
 			{% endfor %}
 		</table>
+	</div>
 	</div>
 </div>
 {% endblock content %}
