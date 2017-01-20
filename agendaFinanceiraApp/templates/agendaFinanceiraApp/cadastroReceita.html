@@ -2,15 +2,20 @@
 {% extends 'agendaFinanceiraApp/base.html' %}
 
 {% block content %}
-
-<h1 class="text-center">Cadastro de Receita</h1>
-<div>
-	<form method="post" class="cadastro-form">{% csrf_token %}
-		<div class="form-group">	
-			{{ form.as_p }}
-		</div>
-		<button type="submit" class="save btn btn-default">Cadastrar</button>
-	</form>
+<div class="row">
+	<div class="col-md-12">
+		<h1 class="text-center">Cadastro de Receita</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<form method="post" class="cadastro-form">{% csrf_token %}
+			<div class="form-group">	
+				{{ form.as_p }}
+			</div>
+			<button type="submit" class="btn btn-default text-center">Cadastrar</button>
+		</form>
+	</div>
 </div>
 
 {% endblock content %}
