@@ -2,6 +2,13 @@
     width: 100%;
 }
 
+/*pode ser util no futuro*/
+/*.cadastro-form-div {
+    width: 70%;
+    position: relative;
+    left: 15%;
+}*/
+
 .login-form-div {
     border-radius: 1px; 
     width: 30%; 
