@@ -1,16 +1,32 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Agenda Financeira</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">	
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="{% static 'css\agendaFianceira.css' %}">	
 </head>
 <body>
-	<h2>Bem Vindo(a) a</h2>
-	<h1>Agenda Financeira<h1>
-	<br>
-	<a href="{% url 'login' %}">Login</a> &nbsp&nbsp&nbsp <a href="{% url 'cadastrar' %}">Cadastre-se</a> 
-
+	<div class="container">
+		<div class="row index-titulo" style="position: relative; top: 50%">
+			<div class="col-md-12">
+				<h1 class="text-center">Bem Vindo(a) a Agenda Financeira<h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="btn btn-default" style="width: 100%"><a style="text-decoration: none" href="{% url 'login' %}">Entrar</a></div>
+			</div>
+			<div class="col-md-6">
+				<div class="btn btn-default" style="width: 100%"><a style="text-decoration: none" href="{% url 'cadastrar' %}">Cadastre-se</a></div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

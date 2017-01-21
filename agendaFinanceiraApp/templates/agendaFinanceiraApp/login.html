@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,18 +9,19 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" href="{% static 'css\agendaFianceira.css' %}">
 
 </head>
 <body>
 	<div class=" container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="text-center">
-					<h1 >Entrar</h1>
-					<p>Preencha com suas credencias</p>
-				</div>
-				<div class="text-center">
-					<form method="post" action="{% url 'login' %}" class="form">
+				<div class="login-form-div">
+					<h1 class="text-center">Entrar</h1>
+					<p class="text-center">Preencha com suas credencias</p>
+				
+					<form method="post" action="{% url 'login' %}" class="login-form" >
 						{% csrf_token %}
    	 					<div>{{ form.username.label_tag }}</div>
     					<div>{{ form.username }}</div>
@@ -26,9 +29,8 @@
     					<div>{{ form.password.label_tag }}</div>
     					<div>{{ form.password }}</div>
 				
-						<div class="row">
-							<input class="btn" type="submit" value="login" />
-						</div>
+						<input class="btn btn-default" type="submit" value="login" style="margin-top: 5%"/>
+						
 					</form>
 				</div>
 			</div>
