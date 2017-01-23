@@ -145,3 +145,17 @@ def saldo(request):
 	else:
 		saldo_periodo = {}
 		return render(request, 'agendaFinanceiraApp/saldo.html', {'saldo_periodo': saldo_periodo})
+
+@login_required
+def excluirReceita(request, id):
+	receita = Receita.objects.get(pk=id)
+	receita.delete()
+
+	return redirect('/consultar/receita/')
+
+@login_required
+def excluirDespesa(request, id):
+	despesa = Despesa.objects.get(pk=id)
+	receita.delete()
+
+	return redirect('/consultar/despesa/')
