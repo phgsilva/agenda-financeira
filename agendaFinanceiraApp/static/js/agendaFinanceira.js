@@ -13,7 +13,5 @@ function validarValor() {
         alert('O conteúdo para o campo "Valor" deve ser um numero!');
         return false;
     }
-    else
-        return true;
 }
 
