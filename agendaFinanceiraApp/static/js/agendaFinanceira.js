@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 function validarValor() {
-    var valor = parseInt($("#id_valor").value);
+    var valor = parseFloat($("#id_valor").val());
 
     if(isNaN(valor)){
         alert('O conteúdo para o campo "Valor" deve ser um numero!');
@@ -15,3 +15,12 @@ function validarValor() {
     }
 }
 
+function excluirReceita(id) {
+    if(confirm("Deseja realmente excluir esse registro?") == true)
+        window.location = '/excluir/receita/' + id;
+}
+
+function excluirDespesa(id) {
+    if(confirm("Deseja realmente excluir esse registro?") == true)
+        window.location = '/excluir/despesa/' + id;
+}
