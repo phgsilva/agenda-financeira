@@ -155,7 +155,7 @@ def excluirReceita(request, id):
 
 @login_required
 def excluirDespesa(request, id):
-	despesa = Despesa.objects.get(pk=id)
-	receita.delete()
+	despesa = Despesas.objects.get(pk=id)
+	despesa.delete()
 
 	return redirect('/consultar/despesa/')

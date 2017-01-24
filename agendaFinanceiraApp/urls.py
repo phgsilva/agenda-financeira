@@ -20,6 +20,6 @@ urlpatterns = [
 	url(r'^editar/receita/(?P<id>[0-9]+)/$', views.editarReceita, name='editarReceita'),
 	url(r'^editar/despesa/(?P<id>[0-9]+)/$', views.editarDespesa, name='editarDespesa'),
 	url(r'^saldo/$', views.saldo, name='saldo'),
-	url(r'^excluir/receita/(P<id>[0-9]+)/$', views.excluirReceita, name='excluirReceita'),
-	url(r'^excluir/despesa/(P<id[0-9]+)/$', views.excluirDespesa, name='excluirDespesa'),
+	url(r'^excluir/receita/(?P<id>[0-9]+)/$', views.excluirReceita, name='excluirReceita'),
+	url(r'^excluir/despesa/(?P<id>[0-9]+)/$', views.excluirDespesa, name='excluirDespesa'),
 ]
