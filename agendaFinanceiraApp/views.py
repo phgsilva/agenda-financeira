@@ -126,18 +126,28 @@ def editarDespesa(request, id):
 		despesaEditForm = DespesaForm(instance=despesa)
 		return render(request, 'agendaFinanceiraApp/cadastroDespesa.html', {'form': despesaEditForm})
 
+# Saldo
 @login_required 
 def saldo(request):
 	if (request.GET.get('data_inicio') is not None) & (request.GET.get('data_fim') is not None):
 		data_inicio = datetime.datetime.strptime(request.GET.get('data_inicio'), "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")
 		data_fim = datetime.datetime.strptime(request.GET.get('data_fim'), "%d/%m/%Y").strftime("%Y-%m-%d %H:%M:%S")
 		
-		total_receitas = Receita.objects.filter(usuario=request.user, data_entrada__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
-		total_despesas = Despesas.objects.filter(usuario=request.user, data_vencimento__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
-		saldo = total_receitas['total'] - total_despesas['total']
+		soma_receitas = Receita.objects.filter(usuario=request.user, data_entrada__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
+		soma_despesas = Despesas.objects.filter(usuario=request.user, data_vencimento__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
+		
+		total_receitas = 0
+		total_despesas = 0
+
+		if total_receitas is not None:
+			total_receitas = soma_receitas['total']
+		if total_despesas is not None:
+			total_despesas = soma_despesas['total']
+		
+		saldo = total_receitas - total_despesas
 		saldo_periodo = {
-			'receitas': total_receitas['total'],
-			'despesas': total_despesas['total'],
+			'receitas': total_receitas,
+			'despesas': total_despesas,
 			'saldo': saldo
 		}
 		
@@ -146,6 +156,7 @@ def saldo(request):
 		saldo_periodo = {}
 		return render(request, 'agendaFinanceiraApp/saldo.html', {'saldo_periodo': saldo_periodo})
 
+# Exclusão de despesas
 @login_required
 def excluirReceita(request, id):
 	receita = Receita.objects.get(pk=id)
@@ -153,6 +164,7 @@ def excluirReceita(request, id):
 
 	return redirect('/consultar/receita/')
 
+# Exclusão de receitas
 @login_required
 def excluirDespesa(request, id):
 	despesa = Despesas.objects.get(pk=id)
