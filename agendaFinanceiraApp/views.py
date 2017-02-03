@@ -136,13 +136,13 @@ def saldo(request):
 		soma_receitas = Receita.objects.filter(usuario=request.user, data_entrada__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
 		soma_despesas = Despesas.objects.filter(usuario=request.user, data_vencimento__range=(data_inicio, data_fim)).aggregate(total=Sum('valor'))
 		
-		total_receitas = 0
-		total_despesas = 0
+		total_receitas = soma_receitas['total']
+		total_despesas = soma_despesas['total']
 
-		if total_receitas is not None:
-			total_receitas = soma_receitas['total']
-		if total_despesas is not None:
-			total_despesas = soma_despesas['total']
+		if total_receitas is None:
+			total_receitas = 0
+		if total_despesas is None:
+			total_despesas = 0
 		
 		saldo = total_receitas - total_despesas
 		saldo_periodo = {
