@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 function validarValor() {
     var valor = parseFloat($("#id_valor").val());
+    $("#id_valor").val($("#id_valor").val().replace(",", ".")); // Gambiara :(
 
     if(isNaN(valor)){
         alert('O conteúdo para o campo "Valor" deve ser um numero!');
@@ -24,3 +25,4 @@ function excluirDespesa(id) {
     if(confirm("Deseja realmente excluir esse registro?") == true)
         window.location = '/excluir/despesa/' + id;
 }
+
